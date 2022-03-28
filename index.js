@@ -1,35 +1,52 @@
 class usuario {
-    constructor(nombre, apellido, libros, mascotas){
+    constructor(nombre, apellido, bookName, bookAuthor, mascotas){
         this.nombre = nombre;
         this.apellido = apellido;
-        this.libros = libros;
-        this.mascotas =  mascotas;
-
+        this.libros = [{book: bookName, autor: bookAuthor}];
+        this.mascotas = [mascotas];
     }
     
     getFullName() {
-    console.log (`Nombre completo: ${this.nombre} ${this.apellido}`)  
+    console.log (`Nombre completo: ${this.nombre} ${this.apellido}`);  
     }
     
-    // addMascota(){
-    //     this.mascotas.push()
-    // }
+    addBook(bookName, bookAuthor){
+        this.libros.push({book: bookName, autor: bookAuthor})
+    }
+    addMascota(nuevaMascota){
+       return this.mascotas.push(nuevaMascota);
+    }
     
     countMascotas(){
         console.log(this.mascotas.length)
     }
 
+    getBooksName(){
+        return this.libros.map(function(libros){
+        return libros.book
+        })
+    }
 }
 
-const usuario1 = new usuario("Alexis", "Montenegro", {nombre:"Mr Pepe", autor:"pepe"}, ["perro", "gato"])
-const usuario2 = new usuario("Pepe", "Bartolome", {nombre:"Mr Jose", autor:"Jose"}, ["perro", "gato", "loro"])
+const usuario1 = new usuario("Alexis", "Montenegro", "Mr Robert", "Robert", "Vaca")
+const usuario2 = new usuario("Pepe", "Bartolome", "Mr Mack", "Mickey", "Conejo")
+
 
 usuario1.getFullName()
 usuario2.getFullName()
 
+usuario1.addMascota("Gato") 
+usuario1.addMascota("loro")
+usuario2.addMascota("Pato")
 
 usuario1.countMascotas()
 usuario2.countMascotas()
+
+usuario1.addBook("Mr Pepe", "Pepe")
+usuario2.addBook("Mr Jose", "Jose")
+
+console.log (usuario1.getBooksName())
+console.log (usuario2.getBooksName())
 
 console.log(usuario1) 
 console.log(usuario2)
